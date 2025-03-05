@@ -1,0 +1,39 @@
+---
+config: 
+  ssh:
+    host-key-check: false
+    user: vagrant
+    run-as: root
+groups:
+  - name: primary
+    targets:
+      - name: ovprimary.local
+        uri:  192.168.2.10
+        vars:
+          pp_role: primary
+        config: 
+          ssh:
+            private-key: .vagrant/machines/ovprimary.local/virtualbox/private_key
+  - name: compilers
+    targets:
+      - name: ovcompiler1.local
+        uri: 192.168.2.11
+        config: 
+          ssh:
+            private-key: .vagrant/machines/ovcompiler1.local/virtualbox/private_key
+      - name: ovcompiler2.local
+        uri: 192.168.2.12
+        config: 
+          ssh:
+            private-key: .vagrant/machines/ovcompiler2.local/virtualbox/private_key
+    vars:
+      pp_role: compiler
+  - name: agents
+    targets:
+      - name: ovagent1.local
+        uri: 192.168.2.21
+        vars:
+          pp_role: example
+        config: 
+          ssh:
+            private-key: .vagrant/machines/ovagent1.local/virtualbox/private_key
