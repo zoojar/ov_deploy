@@ -1,0 +1,4 @@
+---
+name: ov_deploy
+modules:
+- dylanratcliffe/bolt_vagrant
